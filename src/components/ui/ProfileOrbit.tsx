@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 interface ProfileOrbitProps {
   imageSrc: string;
@@ -9,6 +10,7 @@ const ProfileOrbit = ({ imageSrc, size = 200 }: ProfileOrbitProps) => {
   const orbitSize = size;
   const imageSize = Math.round(size * 0.75);
   const imageOffset = (orbitSize - imageSize) / 2;
+  const rocketSize = 64;
 
   return (
     <div className="relative mx-auto" style={{ width: orbitSize, height: orbitSize }}>
@@ -21,27 +23,18 @@ const ProfileOrbit = ({ imageSrc, size = 200 }: ProfileOrbitProps) => {
         <motion.div 
           className="absolute"
           style={{ 
-            width: '48px',
-            height: '48px',
-            top: -24,
+            width: rocketSize,
+            height: rocketSize,
+            top: -rocketSize/2,
             left: '50%',
-            marginLeft: -24,
+            marginLeft: -rocketSize/2,
           }}
         >
-          <motion.div
-            className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg shadow-orange-500/50"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              y: [0, -4, 0]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div className="absolute inset-0 bg-red-500 rounded-full blur-sm opacity-50 animate-pulse" />
-          </motion.div>
+          <DotLottieReact
+            src="https://lottie.host/698fca1b-bccd-425d-b550-a057553384c7/nQ52WVXsHl.lottie"
+            autoplay
+            loop
+          />
         </motion.div>
       </motion.div>
       
