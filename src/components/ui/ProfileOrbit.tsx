@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 interface ProfileOrbitProps {
   imageSrc: string;
@@ -10,7 +9,7 @@ const ProfileOrbit = ({ imageSrc, size = 200 }: ProfileOrbitProps) => {
   const orbitSize = size;
   const imageSize = Math.round(size * 0.75);
   const imageOffset = (orbitSize - imageSize) / 2;
-  const rocketSize = 64;
+  const rocketSize = 24;
 
   return (
     <div className="relative mx-auto" style={{ width: orbitSize, height: orbitSize }}>
@@ -21,25 +20,36 @@ const ProfileOrbit = ({ imageSrc, size = 200 }: ProfileOrbitProps) => {
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       >
         <motion.div 
-          className="absolute"
+          className="absolute flex items-center justify-center"
           style={{ 
             width: rocketSize,
             height: rocketSize,
             top: -rocketSize/2,
             left: '50%',
             marginLeft: -rocketSize/2,
+            transform: 'rotate(90deg)'
           }}
         >
-          <DotLottieReact
-            src="https://lottie.host/698fca1b-bccd-425d-b550-a057553384c7/nQ52WVXsHl.lottie"
-            autoplay
-            loop
-          />
+          <motion.div
+            animate={{ 
+              rotate: [0, 10, -10, 0],
+              y: [0, -2, 2, 0]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            🚀
+          </motion.div>
         </motion.div>
       </motion.div>
       
-      <motion.div
-        className="absolute rounded-full overflow-hidden border-4 border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.2)] backdrop-blur-sm"
+      <motion.img
+        src={imageSrc}
+        alt="Profile"
+        className="absolute object-cover rounded-full border-4 border-white shadow-2xl"
         style={{ 
           width: imageSize, 
           height: imageSize,
@@ -49,17 +59,7 @@ const ProfileOrbit = ({ imageSrc, size = 200 }: ProfileOrbitProps) => {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
-        <motion.img
-          src={imageSrc}
-          alt="Profile"
-          className="w-full h-full object-cover"
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
-        />
-      </motion.div>
+      />
     </div>
   );
 };
