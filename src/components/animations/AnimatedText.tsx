@@ -16,17 +16,17 @@ export const TypedText = ({
 }: AnimatedTextProps) => {
   const defaultSequence = [
     text, // Type the text
-    1000, // Wait 1s
+    2000, // Wait 2s
     '', // Delete the text
-    500, // Wait 0.5s
+    1000, // Wait 1s
   ];
 
   return (
     <TypeAnimation
       sequence={sequence || defaultSequence}
       wrapper="span"
-      speed={50}
-      deletionSpeed={65}
+      speed={35}
+      deletionSpeed={50}
       className={className}
       repeat={repeat}
     />
