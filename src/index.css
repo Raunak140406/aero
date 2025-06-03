@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Space Grotesk', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply overflow-x-hidden;
+    @apply text-white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-opacity-10 bg-white;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-opacity-30 bg-white rounded;
+  }
+}
+
+@layer components {
+  .cosmic-bg {
+    @apply fixed inset-0 z-[-2];
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #0f766e, #4338ca, #7e22ce);
+    background-size: 400% 400%;
+    animation: gradientShift 25s ease infinite;
+  }
+
+  .glass {
+    @apply bg-white bg-opacity-10 backdrop-blur-md border border-white border-opacity-20;
+  }
+
+  .star {
+    @apply absolute rounded-full;
+    animation: twinkle 3s ease-in-out infinite;
+    box-shadow: 0 0 3px 1px currentColor;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-indigo-500 to-purple-500 px-8 py-3 rounded-full hover:shadow-lg transition-all;
+  }
+
+  .btn-secondary {
+    @apply glass px-8 py-3 rounded-full hover:bg-white hover:bg-opacity-20 transition-all;
+  }
+
+  .page-title {
+    @apply text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-center mb-16;
+  }
+
+  .card {
+    @apply glass p-6 rounded-lg transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply transform -translate-y-2 shadow-lg;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(0.3); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
