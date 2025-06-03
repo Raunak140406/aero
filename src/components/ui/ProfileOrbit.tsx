@@ -9,7 +9,6 @@ const ProfileOrbit = ({ imageSrc, size = 200 }: ProfileOrbitProps) => {
   const orbitSize = size;
   const imageSize = Math.round(size * 0.75);
   const imageOffset = (orbitSize - imageSize) / 2;
-  const rocketSize = 24;
 
   return (
     <div className="relative mx-auto" style={{ width: orbitSize, height: orbitSize }}>
@@ -20,20 +19,24 @@ const ProfileOrbit = ({ imageSrc, size = 200 }: ProfileOrbitProps) => {
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       >
         <motion.div 
-          className="absolute flex items-center justify-center"
+          className="absolute"
           style={{ 
-            width: rocketSize,
-            height: rocketSize,
-            top: -rocketSize/2,
+            width: '48px',
+            height: '48px',
+            top: -24,
             left: '50%',
-            marginLeft: -rocketSize/2,
-            transform: 'rotate(90deg)'
+            marginLeft: -24,
           }}
         >
-          <motion.div
+          <motion.svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
             animate={{ 
-              rotate: [0, 10, -10, 0],
-              y: [0, -2, 2, 0]
+              rotate: [0, 0],
+              y: [0, -4, 0]
             }}
             transition={{ 
               duration: 2,
@@ -41,8 +44,14 @@ const ProfileOrbit = ({ imageSrc, size = 200 }: ProfileOrbitProps) => {
               ease: "easeInOut"
             }}
           >
-            🚀
-          </motion.div>
+            <path
+              d="M12 2L15 8L21 9L16.5 14L18 20L12 17L6 20L7.5 14L3 9L9 8L12 2Z"
+              fill="#FFD700"
+              stroke="#FFA500"
+              strokeWidth="1"
+            />
+            <circle cx="12" cy="12" r="3" fill="#FF6B6B" />
+          </motion.svg>
         </motion.div>
       </motion.div>
       

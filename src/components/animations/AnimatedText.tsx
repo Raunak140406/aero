@@ -12,11 +12,13 @@ export const TypedText = ({
   text, 
   className = "", 
   sequence,
-  repeat = 0
+  repeat = Infinity
 }: AnimatedTextProps) => {
   const defaultSequence = [
-    text,
-    1000
+    text, // Type the text
+    1000, // Wait 1s
+    '', // Delete the text
+    500, // Wait 0.5s
   ];
 
   return (
@@ -24,6 +26,7 @@ export const TypedText = ({
       sequence={sequence || defaultSequence}
       wrapper="span"
       speed={50}
+      deletionSpeed={65}
       className={className}
       repeat={repeat}
     />
